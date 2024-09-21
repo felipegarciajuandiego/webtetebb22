@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOSOTROS</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap');
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: #D6EAF8;
+            text-align: center;
+            padding: 20px;
+            overflow-y: auto;
+            height: 100vh;
+            position: relative; /* Para permitir el posicionamiento absoluto de los objetos que caen */
+        }
+
+        .container {
+            background-color: #E8DAEF;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 5px solid #AED6F1;
+            color: black;
+            margin-bottom: 100px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #D7BDE2;
+        }
+
+        .frase {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        #contador {
+            font-size: 1.2rem;
+        }
+
+        .estado {
+            margin-top: 20px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px 15px;
+            font-size: 1rem;
+            cursor: pointer;
+            background-color: #D6EAF8;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #AED6F1;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 400px;
+            padding: 20px;
+            background: #F8F9F9;
+            border: 2px solid #F1948A;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            text-align: center;
+        }
+
+        .modal h2 {
+            font-size: 1.5rem;
+            color: #AF7AC5;
+        }
+
+        .modal p {
+            font-size: 1.2rem;
+            color: #5D6D7E;
+        }
+
+        .modal button {
+            background-color: #F1948A;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .modal button:hover {
+            background-color: #EC7063;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 500;
+        }
+
+        .caida {
+            position: absolute;
+            font-size: 2rem;
+            pointer-events: none;
+            color: #ff1493; /* Color de los corazones y flores */
+            animation: caidaAnimacion 5s linear infinite;
+        }
+
+        @keyframes caidaAnimacion {
+            0% {
+                transform: translateY(-100px);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>NOSOTROS</h1>
+        <div class="image-container">
+            <img src="https://i.postimg.cc/N01dT3jS/IMG-20240908-WA0064-1.jpg" alt="Foto de nosotros">
+            <img src="https://i.postimg.cc/Vkwgw7RF/IMG-20240825-WA0028.jpg" alt="Otra foto" />
+        </div>
+        <p class="frase">"Cada momento contigo es un tesoro."</p>
+        <p id="contador">Llevamos juntos:</p>
+        <div class="estado">
+            <p>Abrir cuando estés:</p>
+            <button onclick="mostrarModal('modalFeliz')">Feliz</button>
+            <button onclick="mostrarModal('modalTriste')">Triste</button>
+            <button onclick="mostrarModal('modalCansada')">Cansada</button>
+            <button onclick="mostrarModal('modalAburrida')">Aburrida</button>
+            <button onclick="mostrarModal('modalSola')">Sola</button>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="modal" id="modalFeliz">
+        <h2>Feliz</h2>
+        <p>Quiero que siempre te sientas así. ❤️</p>
+        <button onclick="cerrarModal()">Cerrar</button>
+    </div>
+
+    <div class="modal" id="modalTriste">
+        <h2>Triste</h2>
+        <p>Te quiero mucho y quiero que te sientas mejor💌</p>
+        <button onclick="cerrarModal()">Cerrar</button>
+    </div>
+
+    <div class="modal" id="modalCansada">
+        <h2>Cansada</h2>
+        <p>Entiendo que estés agotada de todo. Es normal sentirse así a veces.</p>
+        <button onclick="cerrarModal()">Cerrar</button>
+    </div>
+
+    <div class="modal" id="modalAburrida">
+        <h2>Aburrida</h2>
+        <p>Llámame y hagamos un plan 😚</p>
+        <button onclick="cerrarModal()">Cerrar</button>
+    </div>
+
+    <div class="modal" id="modalSola">
+        <h2>Sola</h2>
+        <p>Estoy aquí para ti siempre que me necesites. 💖</p>
+        <button onclick="cerrarModal()">Cerrar</button>
+    </div>
+
+    <script>
+        function actualizarContador() {
+            const fechaInicio = new Date('2024-08-22T00:00:00');
+            const ahora = new Date();
+
+            const diferenciaMs = ahora - fechaInicio;
+            const segundosTotales = Math.floor(diferenciaMs / 1000);
+
+            const dias = Math.floor(segundosTotales / (60 * 60 * 24));
+            const horas = Math.floor((segundosTotales % (60 * 60 * 24)) / (60 * 60));
+            const minutos = Math.floor((segundosTotales % (60 * 60)) / 60);
+            const segundos = segundosTotales % 60;
+
+            document.getElementById('contador').textContent = `Llevamos juntos: ${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos.`;
+        }
+
+        setInterval(actualizarContador, 1000);
+
+        function mostrarModal(id) {
+            document.getElementById(id).style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function cerrarModal() {
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.style.display = 'none';
+            });
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        // Función para crear los objetos que caen (corazones y flores)
+        function crearObjetoCaer(texto) {
+            const objetoCaer = document.createElement('div');
+            objetoCaer.classList.add('caida');
+            objetoCaer.textContent = texto;
+            objetoCaer.style.left = Math.random() * 100 + 'vw';
+            document.body.appendChild(objetoCaer);
+
+            setTimeout(() => {
+                objetoCaer.remove();
+            }, 5000);
+        }
+
+        // Evento para crear objetos en el clic
+        document.body.addEventListener('click', function() {
+            const textos = ['❤️', '💐', '💕'];
+            crearObjetoCaer(textos[Math.floor(Math.random() * textos.length)]);
+        });
+    </script>
+</body>
+</html>
